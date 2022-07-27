@@ -1,16 +1,17 @@
 {
     "private": true,
     "scripts": {
+        "clear": "php artisan optimize:clear",
         "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
+        "development": "npm run clear && mix",
+        "watch": "npm run clear && mix watch",
+        "watch-poll": "npm run clear && mix watch -- --watch-options-poll=1000",
+        "hot": "npm run clear && mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.21",
+        "axios": "^0.25",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
