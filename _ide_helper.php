@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.17.0.
+ * Generated for Laravel 9.22.1.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2793,10 +2793,10 @@
          * @return void 
          * @static 
          */ 
-        public static function userAuthenticationRoutes($attributes = null)
+        public static function userRoutes($attributes = null)
         {
                         /** @var \Illuminate\Broadcasting\BroadcastManager $instance */
-                        $instance->userAuthenticationRoutes($attributes);
+                        $instance->userRoutes($attributes);
         }
                     /**
          * Register the routes for handling broadcast authentication and sockets.
@@ -2807,10 +2807,10 @@
          * @return void 
          * @static 
          */ 
-        public static function channelAuthorizationRoutes($attributes = null)
+        public static function channelRoutes($attributes = null)
         {
                         /** @var \Illuminate\Broadcasting\BroadcastManager $instance */
-                        $instance->channelAuthorizationRoutes($attributes);
+                        $instance->channelRoutes($attributes);
         }
                     /**
          * Get the socket ID for the given request.
@@ -4442,102 +4442,6 @@
             /**
      * 
      *
-     * @see \Illuminate\Encryption\Encrypter
-     */ 
-        class Crypt {
-                    /**
-         * Determine if the given key and cipher combination is valid.
-         *
-         * @param string $key
-         * @param string $cipher
-         * @return bool 
-         * @static 
-         */ 
-        public static function supported($key, $cipher)
-        {
-                        return \Illuminate\Encryption\Encrypter::supported($key, $cipher);
-        }
-                    /**
-         * Create a new encryption key for the given cipher.
-         *
-         * @param string $cipher
-         * @return string 
-         * @static 
-         */ 
-        public static function generateKey($cipher)
-        {
-                        return \Illuminate\Encryption\Encrypter::generateKey($cipher);
-        }
-                    /**
-         * Encrypt the given value.
-         *
-         * @param mixed $value
-         * @param bool $serialize
-         * @return string 
-         * @throws \Illuminate\Contracts\Encryption\EncryptException
-         * @static 
-         */ 
-        public static function encrypt($value, $serialize = true)
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->encrypt($value, $serialize);
-        }
-                    /**
-         * Encrypt a string without serialization.
-         *
-         * @param string $value
-         * @return string 
-         * @throws \Illuminate\Contracts\Encryption\EncryptException
-         * @static 
-         */ 
-        public static function encryptString($value)
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->encryptString($value);
-        }
-                    /**
-         * Decrypt the given value.
-         *
-         * @param string $payload
-         * @param bool $unserialize
-         * @return mixed 
-         * @throws \Illuminate\Contracts\Encryption\DecryptException
-         * @static 
-         */ 
-        public static function decrypt($payload, $unserialize = true)
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->decrypt($payload, $unserialize);
-        }
-                    /**
-         * Decrypt the given string without unserialization.
-         *
-         * @param string $payload
-         * @return string 
-         * @throws \Illuminate\Contracts\Encryption\DecryptException
-         * @static 
-         */ 
-        public static function decryptString($payload)
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->decryptString($payload);
-        }
-                    /**
-         * Get the encryption key that the encrypter is currently using.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getKey()
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->getKey();
-        }
-         
-    }
-            /**
-     * 
-     *
      * @see https://carbon.nesbot.com/docs/
      * @see https://github.com/briannesbitt/Carbon/blob/master/src/Carbon/Factory.php
      * @method static \Illuminate\Support\Carbon create($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $tz = null)
@@ -5211,6 +5115,52 @@
         {            //Method inherited from \Illuminate\Database\Connection         
                         /** @var \Illuminate\Database\SqlServerConnection $instance */
                         $instance->logQuery($query, $bindings, $time);
+        }
+                    /**
+         * Register a callback to be invoked when the connection queries for longer than a given amount of time.
+         *
+         * @param \DateTimeInterface|\Carbon\CarbonInterval|float|int $threshold
+         * @param callable $handler
+         * @return void 
+         * @static 
+         */ 
+        public static function whenQueryingForLongerThan($threshold, $handler)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\SqlServerConnection $instance */
+                        $instance->whenQueryingForLongerThan($threshold, $handler);
+        }
+                    /**
+         * Allow all the query duration handlers to run again, even if they have already run.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function allowQueryDurationHandlersToRunAgain()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\SqlServerConnection $instance */
+                        $instance->allowQueryDurationHandlersToRunAgain();
+        }
+                    /**
+         * Get the duration of all run queries in milliseconds.
+         *
+         * @return float 
+         * @static 
+         */ 
+        public static function totalQueryDuration()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\SqlServerConnection $instance */
+                        return $instance->totalQueryDuration();
+        }
+                    /**
+         * Reset the duration of all run queries.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function resetTotalQueryDuration()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\SqlServerConnection $instance */
+                        $instance->resetTotalQueryDuration();
         }
                     /**
          * Register a hook to be run just before a database query is executed.
@@ -6054,7 +6004,7 @@
          * Assert if an event has a listener attached to it.
          *
          * @param string $expectedEvent
-         * @param string $expectedListener
+         * @param string|array $expectedListener
          * @return void 
          * @static 
          */ 
@@ -6238,16 +6188,17 @@
                         return $instance->lines($path);
         }
                     /**
-         * Get the MD5 hash of the file at the given path.
+         * Get the hash of the file at the given path.
          *
          * @param string $path
+         * @param string $algorithm
          * @return string 
          * @static 
          */ 
-        public static function hash($path)
+        public static function hash($path, $algorithm = 'md5')
         {
                         /** @var \Illuminate\Filesystem\Filesystem $instance */
-                        return $instance->hash($path);
+                        return $instance->hash($path, $algorithm);
         }
                     /**
          * Write the contents of a file.
@@ -7074,6 +7025,33 @@
                         /** @var \Illuminate\Auth\Access\Gate $instance */
                         return $instance->setContainer($container);
         }
+                    /**
+         * Deny with a HTTP status code.
+         *
+         * @param int $status
+         * @param \Illuminate\Auth\Access\?string $message
+         * @param \Illuminate\Auth\Access\?int $code
+         * @return \Illuminate\Auth\Access\Response 
+         * @static 
+         */ 
+        public static function denyWithStatus($status, $message = null, $code = null)
+        {
+                        /** @var \Illuminate\Auth\Access\Gate $instance */
+                        return $instance->denyWithStatus($status, $message, $code);
+        }
+                    /**
+         * Deny with a 404 HTTP status code.
+         *
+         * @param \Illuminate\Auth\Access\?string $message
+         * @param \Illuminate\Auth\Access\?int $code
+         * @return \Illuminate\Auth\Access\Response 
+         * @static 
+         */ 
+        public static function denyAsNotFound($message = null, $code = null)
+        {
+                        /** @var \Illuminate\Auth\Access\Gate $instance */
+                        return $instance->denyAsNotFound($message, $code);
+        }
          
     }
             /**
@@ -7260,7 +7238,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest asJson()
      * @method static \Illuminate\Http\Client\PendingRequest asMultipart()
      * @method static \Illuminate\Http\Client\PendingRequest async()
-     * @method static \Illuminate\Http\Client\PendingRequest attach(string|array $name, string $contents = '', string|null $filename = null, array $headers = [])
+     * @method static \Illuminate\Http\Client\PendingRequest attach(string|array $name, string|resource $contents = '', string|null $filename = null, array $headers = [])
      * @method static \Illuminate\Http\Client\PendingRequest baseUrl(string $url)
      * @method static \Illuminate\Http\Client\PendingRequest beforeSending(callable $callback)
      * @method static \Illuminate\Http\Client\PendingRequest bodyFormat(string $format)
@@ -7268,6 +7246,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
      * @method static \Illuminate\Http\Client\PendingRequest dd()
      * @method static \Illuminate\Http\Client\PendingRequest dump()
+     * @method static \Illuminate\Http\Client\PendingRequest maxRedirects(int $max)
      * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
      * @method static \Illuminate\Http\Client\PendingRequest sink(string|resource $to)
      * @method static \Illuminate\Http\Client\PendingRequest stub(callable $callback)
@@ -7360,7 +7339,7 @@
                         return $instance->stubUrl($url, $callback);
         }
                     /**
-         * Indicate that an exception should not be thrown if any request is not faked.
+         * Indicate that an exception should be thrown if any request is not faked.
          *
          * @param bool $prevent
          * @return \Illuminate\Http\Client\Factory 
@@ -10052,6 +10031,39 @@
                         return $instance->fullUrlIs(...$patterns);
         }
                     /**
+         * Get the host name.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function host()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->host();
+        }
+                    /**
+         * Get the HTTP host being requested.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function httpHost()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->httpHost();
+        }
+                    /**
+         * Get the scheme and HTTP host.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function schemeAndHttpHost()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->schemeAndHttpHost();
+        }
+                    /**
          * Determine if the request is the result of an AJAX call.
          *
          * @return bool 
@@ -10280,6 +10292,30 @@
         {
                         /** @var \Illuminate\Http\Request $instance */
                         $instance->setLaravelSession($session);
+        }
+                    /**
+         * Set the locale for the request instance.
+         *
+         * @param string $locale
+         * @return void 
+         * @static 
+         */ 
+        public static function setRequestLocale($locale)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        $instance->setRequestLocale($locale);
+        }
+                    /**
+         * Set the default locale for the request instance.
+         *
+         * @param string $locale
+         * @return void 
+         * @static 
+         */ 
+        public static function setDefaultRequestLocale($locale)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        $instance->setDefaultRequestLocale($locale);
         }
                     /**
          * Get the user making the request.
@@ -11693,6 +11729,19 @@
         {
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->date($key, $format, $tz);
+        }
+                    /**
+         * Retrieve input from the request as an enum.
+         *
+         * @param string $key
+         * @param string $enumClass
+         * @return mixed|null 
+         * @static 
+         */ 
+        public static function enum($key, $enumClass)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->enum($key, $enumClass);
         }
                     /**
          * Retrieve input from the request as a collection.
@@ -14670,6 +14719,17 @@
                         return $instance->url($path);
         }
                     /**
+         * Determine if temporary URLs can be generated.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function providesTemporaryUrls()
+        {
+                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+                        return $instance->providesTemporaryUrls();
+        }
+                    /**
          * Get a temporary URL for the file at the given path.
          *
          * @param string $path
@@ -17502,7 +17562,6 @@ namespace  {
             class Cache extends \Illuminate\Support\Facades\Cache {}
             class Config extends \Illuminate\Support\Facades\Config {}
             class Cookie extends \Illuminate\Support\Facades\Cookie {}
-            class Crypt extends \Illuminate\Support\Facades\Crypt {}
             class Date extends \Illuminate\Support\Facades\Date {}
             class DB extends \Illuminate\Support\Facades\DB {}
             class Eloquent extends \Illuminate\Database\Eloquent\Model {             
@@ -20421,7 +20480,7 @@ namespace  {
                 /**
              * Add an "order by" clause to the query.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Expression|string $column
              * @param string $direction
              * @return \Illuminate\Database\Query\Builder 
              * @throws \InvalidArgumentException
@@ -20436,7 +20495,7 @@ namespace  {
                 /**
              * Add a descending "order by" clause to the query.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
