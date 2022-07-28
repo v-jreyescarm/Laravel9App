@@ -79,7 +79,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'global-microservices-php'
+          app-name: 'Laravel-2207140040007369'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3B4D6E3410E24BA3A0F83BE639F14ADE }}
           package: .  
